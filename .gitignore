@@ -130,3 +130,5 @@ dmypy.json
 
 # Shared volume
 data/*
+keys.txt
+manifests/secret.yaml

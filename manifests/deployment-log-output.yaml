@@ -21,7 +21,7 @@ spec:
             claimName: image-claim
       containers:
       - name:  log-output
-        image:  kalmis-local-registry:2000/log-output:v0.8.3
+        image:  kalmis-local-registry:2000/log-output:v0.9.3
         envFrom:
           - configMapRef:
               name: log-output-cm
@@ -29,7 +29,7 @@ spec:
           - name: shared-image
             mountPath: /shared
       - name:  log-output-generator
-        image:  kalmis-local-registry:2000/log-output-generator:v0.8.3
+        image:  kalmis-local-registry:2000/log-output-generator:v0.9.3
         volumeMounts:
           - name: shared-image
             mountPath: /shared

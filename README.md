@@ -14,7 +14,27 @@ echo '127.0.0.1       kalmis-local-registry' >> /etc/hosts
 kubectl create namespace k8s-exercise
 ```
 
+## Secrets
+
+Generating the keys
+`age-keygen -o keys.txt`
+
+Encrypting keys 
+```
+sops --encrypt \
+       --age <public_key> \
+       --encrypted-regex '^(data)$' \
+       secret.yaml > secret.yaml.enc
+```
+
+decrypting keys
+
+```
+export SOPS_AGE_KEY_FILE=$(pwd)/keys.txt
+sops --decrypt manifests/secret.yaml.enc > manifests/secret.yaml
+```
 ## Deplyoing
+
 
 ```
 ./build_and_push.sh <tag>

@@ -21,4 +21,10 @@ spec:
             claimName: image-claim
       containers:
       - name:  ping-pong
-        image:  kalmis-local-registry:2000/ping-pong:v0.8.3
+        image:  kalmis-local-registry:2000/ping-pong:v0.9.3
+        env:
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: POSTGRES_PASSWORD
+              name: secrets
