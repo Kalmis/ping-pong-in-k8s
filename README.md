@@ -11,8 +11,8 @@ echo '127.0.0.1       kalmis-local-registry' >> /etc/hosts
 ## Deplyoing
 
 ```
-docker build -t kalmis-local-registry:2000/log-output log-output
-docker push kalmis-local-registry:2000/log-output
+./build_and_push.sh <tag>
+# Modify the deployment.yaml to use the same tag for the image
 kubectl apply -f manifests/
 ```
 
