@@ -1,7 +1,20 @@
 # k8s-tutorial
 Implementing microservice based apps on k8s by following https://devopswithkubernetes.com/part-1/1-first-deploy
 
+## Setting up local k3d cluster
 
+The addition to `/etc/hosts` is required, so it is possible to push (pull) images to (from) the cluster registry
+```
+k3d cluster create kalmis-local --port 8082:30080@agent:0 -p 8081:80@loadbalancer --agents 2 --registry-create kalmis-local-registry:0.0.0.0:2000
+echo '127.0.0.1       kalmis-local-registry' >> /etc/hosts
+```
+## Deplyoing
+
+```
+docker build -t kalmis-local-registry:2000/log-output log-output
+docker push kalmis-local-registry:2000/log-output
+kubectl apply -f manifests/
+```
 
 ## Setting up development environment in VS code
 
