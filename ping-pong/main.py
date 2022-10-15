@@ -9,12 +9,22 @@ logger = logging.getLogger("ping-pong")
 
 app = FastAPI()
 counter_lock = asyncio.Lock()
-counter = 0
+
+FILE_PATH = "/shared/pingpong.txt"
 
 
 @app.get("/pingpong")
 async def ping_pong():
     global counter
     async with counter_lock:
+        # Very nice and performant async endpoint that... Locks and reads/writes a file.
+        try:
+            with open(FILE_PATH, "r") as f:
+                counter = int(f.read())
+        except FileNotFoundError:
+            counter = 0
+            pass
         counter += 1
+        with open(FILE_PATH, "w") as f:
+            f.write(str(counter))
     return {"pong": counter}
