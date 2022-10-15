@@ -1,3 +1,4 @@
+import os
 import logging
 import uuid
 
@@ -23,4 +24,6 @@ async def root():
     async with aiohttp.ClientSession() as session:
         async with session.get(f"{PINGPONG_URL}/pingpong") as resp:
             data = await resp.json()
-    return {"message": f"{timestamp} {uuid.uuid4()}\n Ping / Pongs: {data.get('pong', None)}"}
+    return {
+        "message": f"{os.environ.get('MESSAGE', 'Env not set')} {timestamp} {uuid.uuid4()}\n Ping / Pongs: {data.get('pong', None)}"
+    }
