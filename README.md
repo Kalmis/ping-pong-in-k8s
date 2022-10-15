@@ -4,7 +4,7 @@ Implementing microservice based apps on k8s by following https://devopswithkuber
 
 ## Accessing the log-output endpoint
 
-Access via http://localhost:8082 because that port is forwared to the node[0]:30080 as defined in the cluster creation.
+Access via http://localhost:8081 because we have forwarded port 8081 to port 80 on the loadbalancer/ingress at cluster creation.
 ## Setting up local k3d cluster
 
 The addition to `/etc/hosts` is required, so it is possible to push (pull) images to (from) the cluster registry
