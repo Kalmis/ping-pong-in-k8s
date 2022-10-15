@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: wikipedia-reminder-cronjob
+  namespace: k8s-exercise
+spec:
+  schedule: "0 0 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: wikipedia-reminder
+            image: curlimages/curl
+            args: ['/bin/sh', '-c', 'curl https://en.wikipedia.org/wiki/Special:Random -si | grep  "location:"']
+          restartPolicy: Never
