@@ -9,5 +9,5 @@ spec:
   ports:
   - name: ping-pong
     protocol: TCP
-    port: 2346
+    port: 80
     targetPort: 8001

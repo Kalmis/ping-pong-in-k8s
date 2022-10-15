@@ -9,5 +9,5 @@ spec:
   ports:
   - name: log-output
     protocol: TCP
-    port: 2345
+    port: 80
     targetPort: 8000

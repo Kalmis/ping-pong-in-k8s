@@ -1,6 +1,7 @@
 import logging
 import uuid
 
+import aiohttp
 from fastapi import FastAPI
 
 fmt = "%(asctime)s, %(levelname)-8s %(name)-10s [%(filename)s:%(lineno)d] %(message)s"
@@ -12,11 +13,14 @@ app = FastAPI()
 TIMESTAMP_FILE_PATH = "/shared/timestamp.txt"
 PINGPONG_FILE_PATH = "/shared/pingpong.txt"
 
+PINGPONG_URL = "http://ping-pong-svc"
+
 
 @app.get("/")
 async def root():
     with open(TIMESTAMP_FILE_PATH, "r") as f:
         timestamp = f.read()
-    with open(PINGPONG_FILE_PATH, "r") as f:
-        pingpong = f.read()
-    return {"message": f"{timestamp} {uuid.uuid4()}\n Ping / Pongs: {pingpong}"}
+    async with aiohttp.ClientSession() as session:
+        async with session.get(f"{PINGPONG_URL}/pingpong") as resp:
+            data = await resp.json()
+    return {"message": f"{timestamp} {uuid.uuid4()}\n Ping / Pongs: {data.get('pong', None)}"}

@@ -21,7 +21,4 @@ spec:
             claimName: image-claim
       containers:
       - name:  ping-pong
-        image:  kalmis-local-registry:2000/ping-pong:v0.7.2
-        volumeMounts:
-          - name: shared-image
-            mountPath: /shared
+        image:  kalmis-local-registry:2000/ping-pong:v0.8.2
