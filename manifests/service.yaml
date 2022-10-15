@@ -11,3 +11,7 @@ spec:
     protocol: TCP
     port: 2345
     targetPort: 8000
+  - name: ping-pong
+    protocol: TCP
+    port: 2346
+    targetPort: 8001

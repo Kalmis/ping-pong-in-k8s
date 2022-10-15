@@ -17,4 +17,6 @@ spec:
     spec:
       containers:
       - name:  log-output
-        image:  kalmis-local-registry:2000/log-output:v0.3
+        image:  kalmis-local-registry:2000/log-output:v0.5.1
+      - name:  ping-pong
+        image:  kalmis-local-registry:2000/ping-pong:v0.5.1
