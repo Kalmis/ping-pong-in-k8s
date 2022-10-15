@@ -9,9 +9,11 @@ logger = logging.getLogger("log-output")
 
 app = FastAPI()
 
-RANDOM_STRING = uuid.uuid4()
+FILE_PATH = "/shared/timestamp.txt"
 
 
 @app.get("/")
 async def root():
-    return {"message": f"{RANDOM_STRING} {uuid.uuid4()}"}
+    with open(FILE_PATH, "r") as f:
+        timestamp = f.read()
+    return {"message": f"{timestamp} {uuid.uuid4()}"}

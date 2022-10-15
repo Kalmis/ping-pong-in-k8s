@@ -15,6 +15,17 @@ spec:
       labels:
         app:  log-output
     spec:
+      volumes:
+        - name: shared-image
+          emptyDir: {}
       containers:
       - name:  log-output
-        image:  kalmis-local-registry:2000/log-output:v0.5.1
+        image:  kalmis-local-registry:2000/log-output:v0.6
+        volumeMounts:
+          - name: shared-image
+            mountPath: /shared
+      - name:  log-output-generator
+        image:  kalmis-local-registry:2000/log-output-generator:v0.6
+        volumeMounts:
+          - name: shared-image
+            mountPath: /shared
