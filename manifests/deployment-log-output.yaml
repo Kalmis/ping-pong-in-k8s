@@ -17,7 +17,8 @@ spec:
     spec:
       volumes:
         - name: shared-image
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: image-claim
       containers:
       - name:  log-output
         image:  kalmis-local-registry:2000/log-output:v0.6

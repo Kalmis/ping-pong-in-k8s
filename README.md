@@ -9,9 +9,10 @@ Access via http://localhost:8081 because we have forwarded port 8081 to port 80 
 
 The addition to `/etc/hosts` is required, so it is possible to push (pull) images to (from) the cluster registry
 ```
-k3d cluster create kalmis-local --port 8082:30080@agent:0 -p 8081:80@loadbalancer --agents 2 --registry-create kalmis-local-registry:0.0.0.0:2000
+k3d cluster create kalmis-local --volume $PWD/data:/tmp/k3dvol --port 8082:30080@agent:0 -p 8081:80@loadbalancer --agents 2 --registry-create kalmis-local-registry:0.0.0.0:2000
 echo '127.0.0.1       kalmis-local-registry' >> /etc/hosts
 ```
+
 ## Deplyoing
 
 ```
