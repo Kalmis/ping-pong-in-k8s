@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  log-output-dep
+  namespace: default
+  labels:
+    app:  log-output
+spec:
+  selector:
+    matchLabels:
+      app: log-output
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app:  log-output
+    spec:
+      containers:
+      - name:  log-output
+        image:  kalmis-local-registry:2000/log-output:v0.5.1
