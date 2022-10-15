@@ -1,6 +1,10 @@
 # k8s-tutorial
 Implementing microservice based apps on k8s by following https://devopswithkubernetes.com/part-1/1-first-deploy
 
+
+## Accessing the log-output endpoint
+
+Access via http://localhost:8082 because that port is forwared to the node[0]:30080 as defined in the cluster creation.
 ## Setting up local k3d cluster
 
 The addition to `/etc/hosts` is required, so it is possible to push (pull) images to (from) the cluster registry
