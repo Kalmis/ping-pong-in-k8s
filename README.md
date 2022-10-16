@@ -12,6 +12,15 @@ The addition to `/etc/hosts` is required, so it is possible to push (pull) image
 k3d cluster create kalmis-local --volume $PWD/data:/tmp/k3dvol --port 8082:30080@agent:0 -p 8081:80@loadbalancer --agents 2 --registry-create kalmis-local-registry:0.0.0.0:2000
 echo '127.0.0.1       kalmis-local-registry' >> /etc/hosts
 kubectl create namespace k8s-exercise
+kubectl create namespace prometheus
+kubectl create namespace loki-stack
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add stable https://charts.helm.sh/stable      
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install prometheus-community/kube-prometheus-stack --generate-name --namespace prometheus
+helm upgrade --install loki --namespace=loki-stack grafana/loki-stack
+
 ```
 
 ## Secrets
@@ -32,6 +41,15 @@ decrypting keys
 ```
 export SOPS_AGE_KEY_FILE=$(pwd)/keys.txt
 sops --decrypt manifests/secret.yaml.enc > manifests/secret.yaml
+```
+
+## Helm repos
+
+```
+brew install helm
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add stable https://charts.helm.sh/stable      
+helm repo add grafana https://grafana.github.io/helm-charts
 ```
 ## Deplyoing
 
