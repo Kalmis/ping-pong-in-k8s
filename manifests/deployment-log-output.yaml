@@ -21,7 +21,7 @@ spec:
             claimName: image-claim
       containers:
       - name:  log-output
-        image:  kalmis-local-registry:2000/log-output:v0.9.3
+        image:  kalmis-local-registry:2000/log-output:v1.0
         resources:
           requests:
             cpu: "20m"
@@ -36,7 +36,7 @@ spec:
           - name: shared-image
             mountPath: /shared
       - name:  log-output-generator
-        image:  kalmis-local-registry:2000/log-output-generator:v0.9.3
+        image:  kalmis-local-registry:2000/log-output-generator:v1.0
         resources:
           requests:
             cpu: "2m"

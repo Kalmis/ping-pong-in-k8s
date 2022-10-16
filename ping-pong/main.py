@@ -1,6 +1,5 @@
 import os
 import logging
-import asyncio
 
 import asyncpg
 from fastapi import Depends, FastAPI
@@ -25,6 +24,7 @@ class Counter(BaseModel):
 
 @app.on_event("startup")
 async def startup_event():
+    # FIXME: Use SQLAlchemy and the preferred way of handling DB connections in FastAPI
     logger.info("Starting")
     global pool
     pool = await asyncpg.create_pool(

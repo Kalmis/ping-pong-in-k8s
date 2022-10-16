@@ -1,5 +1,5 @@
-import os
 import logging
+import os
 import uuid
 
 import aiohttp
@@ -12,8 +12,6 @@ logger = logging.getLogger("log-output")
 app = FastAPI()
 
 TIMESTAMP_FILE_PATH = "/shared/timestamp.txt"
-PINGPONG_FILE_PATH = "/shared/pingpong.txt"
-
 PINGPONG_URL = "http://ping-pong-svc"
 
 
